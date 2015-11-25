@@ -118,67 +118,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Applications.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="belongs.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="booking.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="clubGroup.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\courtsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="court.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Memberships.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NPA.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Profiles.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="role.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Roles.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TCCDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCCDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TCCDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TCCDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCCDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="tccmembership.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Users.cs">
-      <DependentUpon>TCCDB.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\TCC.sql" />
@@ -223,23 +172,6 @@
     <Content Include="Views\Courts\Delete.cshtml" />
     <Content Include="Views\Courts\Details.cshtml" />
     <Content Include="Views\Courts\Edit.cshtml" />
-    <EntityDeploy Include="TCCDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TCCDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="TCCDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TCCDB.edmx</DependentUpon>
-      <LastGenOutput>TCCDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="TCCDB.edmx.diagram">
-      <DependentUpon>TCCDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="TCCDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TCCDB.edmx</DependentUpon>
-      <LastGenOutput>TCCDB.cs</LastGenOutput>
-    </Content>
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
