@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TCCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="235" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="belongs">
+          <Key>
+            <PropertyRef Name="idbelongs" />
+          </Key>
+          <Property Name="idbelongs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fkMember" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="fkGroup" Type="int" Nullable="false" />
+          <Property Name="fkRole" Type="int" />
+          <Property Name="since" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="idbooking" />
+          </Key>
+          <Property Name="idbooking" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="moment" Type="datetime" Nullable="false" />
+          <Property Name="fkMadeBy" Type="uniqueidentifier" />
+          <Property Name="fkPartner" Type="uniqueidentifier" />
+          <Property Name="guest" Type="varchar" MaxLength="45" />
+          <Property Name="fkCourt" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clubGroup">
+          <Key>
+            <PropertyRef Name="idclubGroup" />
+          </Key>
+          <Property Name="idclubGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="groupName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="maxResp" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="court">
+          <Key>
+            <PropertyRef Name="idcourt" />
+          </Key>
+          <Property Name="idcourt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courtName" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Memberships">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordFormat" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="NPA">
+          <Key>
+            <PropertyRef Name="NPAVal" />
+          </Key>
+          <Property Name="NPAVal" Type="int" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyNames" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PropertyValueStrings" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PropertyValueBinary" Type="varbinary(max)" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="idrole" />
+          </Key>
+          <Property Name="idrole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isLeading" Type="bit" Nullable="false" />
+          <Property Name="roleDescription" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="tccmembership">
+          <Key>
+            <PropertyRef Name="idtccmembership" />
+          </Key>
+          <Property Name="idtccmembership" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fkuser" Type="uniqueidentifier" />
+          <Property Name="address1" Type="varchar" MaxLength="50" />
+          <Property Name="address2" Type="varchar" MaxLength="50" />
+          <Property Name="NPA" Type="int" />
+          <Property Name="phonenumber" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="birthdate" Type="datetime" />
+          <Property Name="isSiteAdmin" Type="bit" Nullable="false" />
+          <Property Name="isTeamLeader" Type="bit" Nullable="false" />
+          <Property Name="approved" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="45" />
+          <Property Name="LastName" Type="varchar" MaxLength="45" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_belongs_as">
+          <End Role="role" Type="Self.role" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="belongs" Type="Self.belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="idrole" />
+            </Principal>
+            <Dependent Role="belongs">
+              <PropertyRef Name="fkRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_belongs_group">
+          <End Role="clubGroup" Type="Self.clubGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="belongs" Type="Self.belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clubGroup">
+              <PropertyRef Name="idclubGroup" />
+            </Principal>
+            <Dependent Role="belongs">
+              <PropertyRef Name="fkGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_belongs_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="belongs" Type="Self.belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="belongs">
+              <PropertyRef Name="fkMember" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_court">
+          <End Role="court" Type="Self.court" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="court">
+              <PropertyRef Name="idcourt" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="fkCourt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_from">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="fkMadeBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_partner">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="fkPartner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Memberships_dbo_Applications_ApplicationId">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Memberships" Type="Self.Memberships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Memberships">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Memberships_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Memberships" Type="Self.Memberships" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Memberships">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Profiles_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Roles_dbo_Applications_ApplicationId">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Applications_ApplicationId">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UsersInRoles_dbo_Roles_RoleId">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UsersInRoles" Type="Self.UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UsersInRoles_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersInRoles" Type="Self.UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_npa">
+          <End Role="NPA" Type="Self.NPA" Multiplicity="0..1" />
+          <End Role="tccmembership" Type="Self.tccmembership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NPA">
+              <PropertyRef Name="NPAVal" />
+            </Principal>
+            <Dependent Role="tccmembership">
+              <PropertyRef Name="NPA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_info">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tccmembership" Type="Self.tccmembership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tccmembership">
+              <PropertyRef Name="fkuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TCCModelStoreContainer">
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="belongs" EntityType="Self.belongs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="booking" EntityType="Self.booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clubGroup" EntityType="Self.clubGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="court" EntityType="Self.court" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Memberships" EntityType="Self.Memberships" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NPA" EntityType="Self.NPA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tccmembership" EntityType="Self.tccmembership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersInRoles" EntityType="Self.UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_belongs_as" Association="Self.FK_belongs_as">
+            <End Role="role" EntitySet="role" />
+            <End Role="belongs" EntitySet="belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_belongs_group" Association="Self.FK_belongs_group">
+            <End Role="clubGroup" EntitySet="clubGroup" />
+            <End Role="belongs" EntitySet="belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_belongs_Users" Association="Self.FK_belongs_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="belongs" EntitySet="belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_court" Association="Self.FK_booking_court">
+            <End Role="court" EntitySet="court" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_from" Association="Self.FK_booking_from">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_partner" Association="Self.FK_booking_partner">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Memberships_dbo_Applications_ApplicationId" Association="Self.FK_dbo_Memberships_dbo_Applications_ApplicationId">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Memberships" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Memberships_dbo_Users_UserId" Association="Self.FK_dbo_Memberships_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Memberships" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Profiles_dbo_Users_UserId" Association="Self.FK_dbo_Profiles_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Roles_dbo_Applications_ApplicationId" Association="Self.FK_dbo_Roles_dbo_Applications_ApplicationId">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Applications_ApplicationId" Association="Self.FK_dbo_Users_dbo_Applications_ApplicationId">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UsersInRoles_dbo_Roles_RoleId" Association="Self.FK_dbo_UsersInRoles_dbo_Roles_RoleId">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UsersInRoles_dbo_Users_UserId" Association="Self.FK_dbo_UsersInRoles_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_npa" Association="Self.FK_npa">
+            <End Role="NPA" EntitySet="NPA" />
+            <End Role="tccmembership" EntitySet="tccmembership" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_info" Association="Self.FK_user_info">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tccmembership" EntitySet="tccmembership" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TCCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="ApplicationName" Type="String" MaxLength="235" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Memberships" Relationship="Self.FK_dbo_Memberships_dbo_Applications_ApplicationId" FromRole="Applications" ToRole="Memberships" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_dbo_Roles_dbo_Applications_ApplicationId" FromRole="Applications" ToRole="Roles" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_Applications_ApplicationId" FromRole="Applications" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="belongs">
+          <Key>
+            <PropertyRef Name="idbelongs" />
+          </Key>
+          <Property Name="idbelongs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fkMember" Type="Guid" Nullable="false" />
+          <Property Name="fkGroup" Type="Int32" Nullable="false" />
+          <Property Name="fkRole" Type="Int32" />
+          <Property Name="since" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="role" Relationship="Self.FK_belongs_as" FromRole="belongs" ToRole="role" />
+          <NavigationProperty Name="clubGroup" Relationship="Self.FK_belongs_group" FromRole="belongs" ToRole="clubGroup" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_belongs_Users" FromRole="belongs" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="idbooking" />
+          </Key>
+          <Property Name="idbooking" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="moment" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fkMadeBy" Type="Guid" />
+          <Property Name="fkPartner" Type="Guid" />
+          <Property Name="guest" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fkCourt" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="court" Relationship="Self.FK_booking_court" FromRole="booking" ToRole="court" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_booking_from" FromRole="booking" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_booking_partner" FromRole="booking" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="clubGroup">
+          <Key>
+            <PropertyRef Name="idclubGroup" />
+          </Key>
+          <Property Name="idclubGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="maxResp" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="belongs" Relationship="Self.FK_belongs_group" FromRole="clubGroup" ToRole="belongs" />
+        </EntityType>
+        <EntityType Name="court">
+          <Key>
+            <PropertyRef Name="idcourt" />
+          </Key>
+          <Property Name="idcourt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courtName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="booking" Relationship="Self.FK_booking_court" FromRole="court" ToRole="booking" />
+        </EntityType>
+        <EntityType Name="Memberships">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK_dbo_Memberships_dbo_Applications_ApplicationId" FromRole="Memberships" ToRole="Applications" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Memberships_dbo_Users_UserId" FromRole="Memberships" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="NPA">
+          <Key>
+            <PropertyRef Name="NPAVal" />
+          </Key>
+          <Property Name="NPAVal" Type="Int32" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tccmembership" Relationship="Self.FK_npa" FromRole="NPA" ToRole="tccmembership" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PropertyNames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PropertyValueStrings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PropertyValueBinary" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Profiles_dbo_Users_UserId" FromRole="Profiles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="idrole" />
+          </Key>
+          <Property Name="idrole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isLeading" Type="Boolean" Nullable="false" />
+          <Property Name="roleDescription" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="belongs" Relationship="Self.FK_belongs_as" FromRole="role" ToRole="belongs" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK_dbo_Roles_dbo_Applications_ApplicationId" FromRole="Roles" ToRole="Applications" />
+          <NavigationProperty Name="Users" Relationship="Self.UsersInRoles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="tccmembership">
+          <Key>
+            <PropertyRef Name="idtccmembership" />
+          </Key>
+          <Property Name="idtccmembership" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fkuser" Type="Guid" />
+          <Property Name="address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NPA" Type="Int32" />
+          <Property Name="phonenumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="birthdate" Type="DateTime" Precision="3" />
+          <Property Name="isSiteAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="isTeamLeader" Type="Boolean" Nullable="false" />
+          <Property Name="approved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NPA1" Relationship="Self.FK_npa" FromRole="tccmembership" ToRole="NPA" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_user_info" FromRole="tccmembership" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK_dbo_Users_dbo_Applications_ApplicationId" FromRole="Users" ToRole="Applications" />
+          <NavigationProperty Name="belongs" Relationship="Self.FK_belongs_Users" FromRole="Users" ToRole="belongs" />
+          <NavigationProperty Name="booking" Relationship="Self.FK_booking_from" FromRole="Users" ToRole="booking" />
+          <NavigationProperty Name="booking1" Relationship="Self.FK_booking_partner" FromRole="Users" ToRole="booking" />
+          <NavigationProperty Name="Memberships" Relationship="Self.FK_dbo_Memberships_dbo_Users_UserId" FromRole="Users" ToRole="Memberships" />
+          <NavigationProperty Name="Profiles" Relationship="Self.FK_dbo_Profiles_dbo_Users_UserId" FromRole="Users" ToRole="Profiles" />
+          <NavigationProperty Name="tccmembership" Relationship="Self.FK_user_info" FromRole="Users" ToRole="tccmembership" />
+          <NavigationProperty Name="Roles" Relationship="Self.UsersInRoles" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK_dbo_Memberships_dbo_Applications_ApplicationId">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Memberships" Type="Self.Memberships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Memberships">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Roles_dbo_Applications_ApplicationId">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Applications_ApplicationId">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_belongs_as">
+          <End Role="role" Type="Self.role" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="belongs" Type="Self.belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="idrole" />
+            </Principal>
+            <Dependent Role="belongs">
+              <PropertyRef Name="fkRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_belongs_group">
+          <End Role="clubGroup" Type="Self.clubGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="belongs" Type="Self.belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clubGroup">
+              <PropertyRef Name="idclubGroup" />
+            </Principal>
+            <Dependent Role="belongs">
+              <PropertyRef Name="fkGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_belongs_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="belongs" Type="Self.belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="belongs">
+              <PropertyRef Name="fkMember" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_court">
+          <End Role="court" Type="Self.court" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="court">
+              <PropertyRef Name="idcourt" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="fkCourt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_from">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="fkMadeBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_booking_partner">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="fkPartner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Memberships_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Memberships" Type="Self.Memberships" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Memberships">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_npa">
+          <End Role="NPA" Type="Self.NPA" Multiplicity="0..1" />
+          <End Role="tccmembership" Type="Self.tccmembership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NPA">
+              <PropertyRef Name="NPAVal" />
+            </Principal>
+            <Dependent Role="tccmembership">
+              <PropertyRef Name="NPA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Profiles_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_info">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tccmembership" Type="Self.tccmembership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tccmembership">
+              <PropertyRef Name="fkuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersInRoles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TCCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applications" EntityType="Self.Applications" />
+          <EntitySet Name="belongs" EntityType="Self.belongs" />
+          <EntitySet Name="booking" EntityType="Self.booking" />
+          <EntitySet Name="clubGroup" EntityType="Self.clubGroup" />
+          <EntitySet Name="court" EntityType="Self.court" />
+          <EntitySet Name="Memberships" EntityType="Self.Memberships" />
+          <EntitySet Name="NPA" EntityType="Self.NPA" />
+          <EntitySet Name="Profiles" EntityType="Self.Profiles" />
+          <EntitySet Name="role" EntityType="Self.role" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="tccmembership" EntityType="Self.tccmembership" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_dbo_Memberships_dbo_Applications_ApplicationId" Association="Self.FK_dbo_Memberships_dbo_Applications_ApplicationId">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Memberships" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Roles_dbo_Applications_ApplicationId" Association="Self.FK_dbo_Roles_dbo_Applications_ApplicationId">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Applications_ApplicationId" Association="Self.FK_dbo_Users_dbo_Applications_ApplicationId">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_belongs_as" Association="Self.FK_belongs_as">
+            <End Role="role" EntitySet="role" />
+            <End Role="belongs" EntitySet="belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_belongs_group" Association="Self.FK_belongs_group">
+            <End Role="clubGroup" EntitySet="clubGroup" />
+            <End Role="belongs" EntitySet="belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_belongs_Users" Association="Self.FK_belongs_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="belongs" EntitySet="belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_court" Association="Self.FK_booking_court">
+            <End Role="court" EntitySet="court" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_from" Association="Self.FK_booking_from">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_booking_partner" Association="Self.FK_booking_partner">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Memberships_dbo_Users_UserId" Association="Self.FK_dbo_Memberships_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Memberships" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_npa" Association="Self.FK_npa">
+            <End Role="NPA" EntitySet="NPA" />
+            <End Role="tccmembership" EntitySet="tccmembership" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Profiles_dbo_Users_UserId" Association="Self.FK_dbo_Profiles_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_info" Association="Self.FK_user_info">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tccmembership" EntitySet="tccmembership" />
+          </AssociationSet>
+          <AssociationSet Name="UsersInRoles" Association="Self.UsersInRoles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TCCModelStoreContainer" CdmEntityContainer="TCCEntities">
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="TCCModel.Applications">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="belongs">
+            <EntityTypeMapping TypeName="TCCModel.belongs">
+              <MappingFragment StoreEntitySet="belongs">
+                <ScalarProperty Name="idbelongs" ColumnName="idbelongs" />
+                <ScalarProperty Name="fkMember" ColumnName="fkMember" />
+                <ScalarProperty Name="fkGroup" ColumnName="fkGroup" />
+                <ScalarProperty Name="fkRole" ColumnName="fkRole" />
+                <ScalarProperty Name="since" ColumnName="since" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="booking">
+            <EntityTypeMapping TypeName="TCCModel.booking">
+              <MappingFragment StoreEntitySet="booking">
+                <ScalarProperty Name="idbooking" ColumnName="idbooking" />
+                <ScalarProperty Name="moment" ColumnName="moment" />
+                <ScalarProperty Name="fkMadeBy" ColumnName="fkMadeBy" />
+                <ScalarProperty Name="fkPartner" ColumnName="fkPartner" />
+                <ScalarProperty Name="guest" ColumnName="guest" />
+                <ScalarProperty Name="fkCourt" ColumnName="fkCourt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clubGroup">
+            <EntityTypeMapping TypeName="TCCModel.clubGroup">
+              <MappingFragment StoreEntitySet="clubGroup">
+                <ScalarProperty Name="idclubGroup" ColumnName="idclubGroup" />
+                <ScalarProperty Name="groupName" ColumnName="groupName" />
+                <ScalarProperty Name="maxResp" ColumnName="maxResp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="court">
+            <EntityTypeMapping TypeName="TCCModel.court">
+              <MappingFragment StoreEntitySet="court">
+                <ScalarProperty Name="idcourt" ColumnName="idcourt" />
+                <ScalarProperty Name="courtName" ColumnName="courtName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memberships">
+            <EntityTypeMapping TypeName="TCCModel.Memberships">
+              <MappingFragment StoreEntitySet="Memberships">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowsStart" ColumnName="FailedPasswordAnswerAttemptWindowsStart" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NPA">
+            <EntityTypeMapping TypeName="TCCModel.NPA">
+              <MappingFragment StoreEntitySet="NPA">
+                <ScalarProperty Name="NPAVal" ColumnName="NPAVal" />
+                <ScalarProperty Name="city" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="TCCModel.Profiles">
+              <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
+                <ScalarProperty Name="PropertyValueStrings" ColumnName="PropertyValueStrings" />
+                <ScalarProperty Name="PropertyValueBinary" ColumnName="PropertyValueBinary" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role">
+            <EntityTypeMapping TypeName="TCCModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="idrole" ColumnName="idrole" />
+                <ScalarProperty Name="isLeading" ColumnName="isLeading" />
+                <ScalarProperty Name="roleDescription" ColumnName="roleDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="TCCModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tccmembership">
+            <EntityTypeMapping TypeName="TCCModel.tccmembership">
+              <MappingFragment StoreEntitySet="tccmembership">
+                <ScalarProperty Name="idtccmembership" ColumnName="idtccmembership" />
+                <ScalarProperty Name="fkuser" ColumnName="fkuser" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="NPA" ColumnName="NPA" />
+                <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="isSiteAdmin" ColumnName="isSiteAdmin" />
+                <ScalarProperty Name="isTeamLeader" ColumnName="isTeamLeader" />
+                <ScalarProperty Name="approved" ColumnName="approved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TCCModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsersInRoles" TypeName="TCCModel.UsersInRoles" StoreEntitySet="UsersInRoles">
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

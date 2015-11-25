@@ -1,0 +1,83 @@
+﻿@model ASP1_TCC.Users
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Users</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAnonymous)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAnonymous)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastActivityDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastActivityDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Applications.ApplicationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Applications.ApplicationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Memberships.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Memberships.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profiles.PropertyNames)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profiles.PropertyNames)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
