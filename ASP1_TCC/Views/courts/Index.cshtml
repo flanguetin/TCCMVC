@@ -13,16 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.surface)
+            Surface
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.inside)
+            Situation
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.reservability)
+            Nom
         </th>
         <th></th>
     </tr>
@@ -33,18 +30,23 @@
             @Html.DisplayFor(modelItem => item.surface)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.inside)
+            @if (item.inside == 1)
+            {
+                @: Intérieur
+            }
+            else
+            {
+                @: Extérieur
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.reservability)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idCourts }) |
+            @Html.ActionLink("Editer", "Edit", new { id=item.idCourts }) |
             @Html.ActionLink("Details", "Details", new { id=item.idCourts }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idCourts })
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.idCourts }) |
+            @Html.RouteLink("Occupation", new { action = "Index", controller = "CourtSchedule", courtid = item.idCourts })
         </td>
     </tr>
 }

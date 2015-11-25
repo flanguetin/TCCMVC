@@ -1,0 +1,24 @@
+﻿@model ASP1_TCC.ViewModels.CourtScheduleViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Occupation du court @Model.courtName entre @String.Format("le {0:dd MMMM yyyy} et le {1:dd MMMM yyyy}", Model.from, Model.from.AddDays(Model.dateSpan))</h2>
+
+@if (Model.selectedBookings.Count == 0)
+{
+    @: Aucune réservation !
+}
+else
+{
+    <h4>@Model.selectedBookings.Count réservations</h4>
+    <ul>
+        @foreach (reservations r in Model.selectedBookings)
+        {
+            <li>@String.Format("{0:dd MMMM yyyy hh}:00, {1}", r.date, r.users.lastname) 
+            </li>
+        }
+    </ul>
+}

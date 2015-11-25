@@ -124,6 +124,7 @@
     <Compile Include="comments.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CourtScheduleController.cs" />
     <Compile Include="Controllers\courtsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\rolesController.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="users.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CourtScheduleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\TennisClubChavornay.sql" />
@@ -234,6 +236,7 @@
     <Content Include="Views\roles\Details.cshtml" />
     <Content Include="Views\roles\Edit.cshtml" />
     <Content Include="Views\roles\Index.cshtml" />
+    <Content Include="Views\CourtSchedule\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
