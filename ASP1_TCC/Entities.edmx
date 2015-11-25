@@ -74,6 +74,7 @@
           <Property Name="idRoles" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="reservability" Type="tinyint" Nullable="false" />
+          <Property Name="authorizationlevel" Type="int" Nullable="false" />
           <Property Name="nbMax" Type="int" />
         </EntityType>
         <EntityType Name="seasons">
@@ -104,7 +105,9 @@
           <Property Name="fkRoles" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_comments_courts">
-          <End Role="courts" Type="Self.courts" Multiplicity="1" />
+          <End Role="courts" Type="Self.courts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="comments" Type="Self.comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="courts">
@@ -128,7 +131,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_courts_maintenances_courts">
-          <End Role="courts" Type="Self.courts" Multiplicity="1" />
+          <End Role="courts" Type="Self.courts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="courts_maintenances" Type="Self.courts_maintenances" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="courts">
@@ -164,7 +169,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_reservations_courts">
-          <End Role="courts" Type="Self.courts" Multiplicity="1" />
+          <End Role="courts" Type="Self.courts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="reservations" Type="Self.reservations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="courts">
@@ -361,6 +368,7 @@
           <Property Name="idRoles" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="reservability" Type="Byte" Nullable="false" />
+          <Property Name="authorizationlevel" Type="Int32" Nullable="false" />
           <Property Name="nbMax" Type="Int32" />
           <NavigationProperty Name="users" Relationship="Self.FK_Users_Roles" FromRole="roles" ToRole="users" />
         </EntityType>
@@ -398,7 +406,9 @@
           <NavigationProperty Name="roles" Relationship="Self.FK_Users_Roles" FromRole="users" ToRole="roles" />
         </EntityType>
         <Association Name="FK_comments_courts">
-          <End Role="courts" Type="Self.courts" Multiplicity="1" />
+          <End Role="courts" Type="Self.courts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="comments" Type="Self.comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="courts">
@@ -422,7 +432,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_courts_maintenances_courts">
-          <End Role="courts" Type="Self.courts" Multiplicity="1" />
+          <End Role="courts" Type="Self.courts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="courts_maintenances" Type="Self.courts_maintenances" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="courts">
@@ -434,7 +446,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_reservations_courts">
-          <End Role="courts" Type="Self.courts" Multiplicity="1" />
+          <End Role="courts" Type="Self.courts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="reservations" Type="Self.reservations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="courts">
@@ -517,7 +531,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TennisClubChavornayEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="comments" EntityType="Self.comments" />
           <EntitySet Name="courts" EntityType="Self.courts" />
           <EntitySet Name="courts_maintenances" EntityType="Self.courts_maintenances" />
@@ -573,7 +587,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TennisClubChavornayModelStoreContainer" CdmEntityContainer="TennisClubChavornayEntities">
+        <EntityContainerMapping StorageEntityContainer="TennisClubChavornayModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="comments">
             <EntityTypeMapping TypeName="TennisClubChavornayModel.comments">
               <MappingFragment StoreEntitySet="comments">
@@ -648,6 +662,7 @@
                 <ScalarProperty Name="idRoles" ColumnName="idRoles" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="reservability" ColumnName="reservability" />
+                <ScalarProperty Name="authorizationlevel" ColumnName="authorizationlevel" />
                 <ScalarProperty Name="nbMax" ColumnName="nbMax" />
               </MappingFragment>
             </EntityTypeMapping>

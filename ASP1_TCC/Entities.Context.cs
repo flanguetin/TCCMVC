@@ -13,10 +13,10 @@ namespace ASP1_TCC
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TennisClubChavornayEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public TennisClubChavornayEntities()
-            : base("name=TennisClubChavornayEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Controllers\courtsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\rolesController.cs" />
     <Compile Include="courts.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -228,6 +229,11 @@
     <Content Include="Views\courts\Details.cshtml" />
     <Content Include="Views\courts\Edit.cshtml" />
     <Content Include="Views\courts\Index.cshtml" />
+    <Content Include="Views\roles\Create.cshtml" />
+    <Content Include="Views\roles\Delete.cshtml" />
+    <Content Include="Views\roles\Details.cshtml" />
+    <Content Include="Views\roles\Edit.cshtml" />
+    <Content Include="Views\roles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

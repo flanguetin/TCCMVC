@@ -10,107 +10,107 @@ using ASP1_TCC;
 
 namespace ASP1_TCC.Controllers
 {
-    public class courtsController : Controller
+    public class rolesController : Controller
     {
         private Entities db = new Entities();
 
-        // GET: courts
+        // GET: roles
         public ActionResult Index()
         {
-            return View(db.courts.ToList());
+            return View(db.roles.ToList());
         }
 
-        // GET: courts/Details/5
+        // GET: roles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            courts courts = db.courts.Find(id);
-            if (courts == null)
+            roles roles = db.roles.Find(id);
+            if (roles == null)
             {
                 return HttpNotFound();
             }
-            return View(courts);
+            return View(roles);
         }
 
-        // GET: courts/Create
+        // GET: roles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: courts/Create
+        // POST: roles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCourts,surface,inside,name,reservability")] courts courts)
+        public ActionResult Create([Bind(Include = "idRoles,name,reservability,nbMax")] roles roles)
         {
             if (ModelState.IsValid)
             {
-                db.courts.Add(courts);
+                db.roles.Add(roles);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(courts);
+            return View(roles);
         }
 
-        // GET: courts/Edit/5
+        // GET: roles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            courts courts = db.courts.Find(id);
-            if (courts == null)
+            roles roles = db.roles.Find(id);
+            if (roles == null)
             {
                 return HttpNotFound();
             }
-            return View(courts);
+            return View(roles);
         }
 
-        // POST: courts/Edit/5
+        // POST: roles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCourts,surface,inside,name,reservability")] courts courts)
+        public ActionResult Edit([Bind(Include = "idRoles,name,reservability,nbMax")] roles roles)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(courts).State = EntityState.Modified;
+                db.Entry(roles).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(courts);
+            return View(roles);
         }
 
-        // GET: courts/Delete/5
+        // GET: roles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            courts courts = db.courts.Find(id);
-            if (courts == null)
+            roles roles = db.roles.Find(id);
+            if (roles == null)
             {
                 return HttpNotFound();
             }
-            return View(courts);
+            return View(roles);
         }
 
-        // POST: courts/Delete/5
+        // POST: roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            courts courts = db.courts.Find(id);
-            db.courts.Remove(courts);
+            roles roles = db.roles.Find(id);
+            db.roles.Remove(roles);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

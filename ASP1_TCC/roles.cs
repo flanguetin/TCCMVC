@@ -23,6 +23,7 @@ namespace ASP1_TCC
         public int idRoles { get; set; }
         public string name { get; set; }
         public byte reservability { get; set; }
+        public int authorizationlevel { get; set; }
         public Nullable<int> nbMax { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
