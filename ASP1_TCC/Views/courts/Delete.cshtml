@@ -1,0 +1,45 @@
+﻿@model ASP1_TCC.courts
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Suppression d'un court</h2>
+
+<h3>Etes-vous sûr de vouloir supprimer le court @Model.name ?</h3>
+<div>
+    @if ((Model.reservations.Count > 0) || (Model.courts_maintenances.Count > 0)) 
+    {
+        @:<div>Cela aura pour effet de:</div>
+    }
+    @if (Model.reservations.Count > 0)
+    {
+        @:<div>Supprimer les réservations:</div><ul>
+        foreach (reservations r in Model.reservations)
+        {
+            <li>@String.Format("{0:dd MMMM yyyy} de {1} {2}", r.date, r.users.firstname, r.users.lastname)</li>
+        }
+        @:</ul><br>
+    }
+
+    @if (Model.courts_maintenances.Count > 0)
+    {
+        @:<div>Supprimer les interventions de maintenance:</div><ul>
+        foreach (courts_maintenances cm in Model.courts_maintenances)
+        {
+            <li>@String.Format("{0:dd MMMM yyyy} faite par {1}", cm.maintenances.startDate, cm.maintenances.company)</li>
+        }
+        @:</ul><br>
+    }
+</ul>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Effacer" class="btn btn-default" /> |
+        @Html.ActionLink("Retour", "Index")
+    </div>
+}
+</div>

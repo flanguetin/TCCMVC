@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5b859f9f5bb2497ab4304c73a66efd52" Name="Diagram1">
+        <EntityTypeShape EntityType="TennisClubChavornayModel.comments" Width="1.5" PointX="0.625" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TennisClubChavornayModel.courts" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TennisClubChavornayModel.courts_maintenances" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TennisClubChavornayModel.maintenances" Width="1.5" PointX="9" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TennisClubChavornayModel.payments" Width="1.5" PointX="6.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TennisClubChavornayModel.reservations" Width="1.5" PointX="6.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TennisClubChavornayModel.roles" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TennisClubChavornayModel.seasons" Width="1.5" PointX="9.375" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TennisClubChavornayModel.users" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_comments_courts" ManuallyRouted="false" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_comments_users" ManuallyRouted="false" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_courts_maintenances_courts" ManuallyRouted="false" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_reservations_courts" ManuallyRouted="false" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_courts_maintenances_maintenances" ManuallyRouted="false" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_Payments_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_reservations_seasons" ManuallyRouted="false" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_reservations_users_guests" ManuallyRouted="false" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_reservations_users_reservers" ManuallyRouted="false" />
+        <AssociationConnector Association="TennisClubChavornayModel.FK_Users_Roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
